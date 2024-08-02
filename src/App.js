@@ -24,8 +24,9 @@ function ParentComponent({ childTitle }) {
 }
 
 // ---- Render Issue with Child Component ----
-// This component is unnecessarily re-rendering with each button click, should be memoized to prevent that
+// Child component is unnecessarily re-rendering with each button click, should be memoized to prevent that
 const ChildComponent = React.memo( function ({ title }) {
+
   return (
     <div className="Component">
       <h1>
