@@ -11,7 +11,7 @@ function ParentComponent({ childTitle }) {
         Parent State Value Change: <span className="Varible">{value}</span>
       </h1>
 
-      <ChildComponent title={ChildTitle} />
+      <MemoizedChildComponent title={ChildTitle} />
       <button
         onClick={() => {
           setValue((value) => value + 1);
@@ -23,7 +23,9 @@ function ParentComponent({ childTitle }) {
   );
 }
 
-const ChildComponent = function ({ title }) {
+// ---- Render Issue with Child Component ----
+// This component is unnecessarily re-rendering with each button click, should be memoized to prevent that
+const ChildComponent = React.memo( function ({ title }) {
   return (
     <div className="Component">
       <h1>
@@ -31,7 +33,9 @@ const ChildComponent = function ({ title }) {
       </h1>
     </div>
   );
-};
+});
+
+const MemoizedChildComponent = React.memo(ChildComponent)
 
 export default function App() {
   return (
